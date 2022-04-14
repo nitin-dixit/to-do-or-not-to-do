@@ -8,9 +8,7 @@ const PageTitle = () => {
         <div className="absolute right-0 top-4">
           <Toggler />
         </div>
-        {/* <h1 className="absolute z-10 bottom-1/4 right-[18%] sm:right-1/4 text-xl text-slate-100 font-bold drop-shadow-xl">
-      What&apos;s up, Mate!
-    </h1> */}
+
         <div className="flex justify-center">
           <img
             src={img}

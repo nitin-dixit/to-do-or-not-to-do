@@ -1,5 +1,6 @@
 import PageTitle from "./components/PageTitle";
 import AppHeader from "./components/AppHeader";
+import AppContent from "./components/AppContent";
 
 const App = () => {
   return (
@@ -9,7 +10,7 @@ const App = () => {
           <PageTitle></PageTitle>
           <AppHeader></AppHeader>
           <div className="App flex-1 flex flex-col items-center mt-8 px-2 sm:px-0">
-            
+            <AppContent></AppContent>
           </div>
         </div>
       </div>

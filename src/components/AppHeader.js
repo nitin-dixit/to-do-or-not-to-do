@@ -67,30 +67,63 @@ const AppHeader = () => {
                     </div>
 
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <h3
+                      {/* <h3
                         className="text-2xl leading-6 font-medium text-slate-900 dark:text-slate-300"
                         id="modal-title"
                       >
                         Add Task
-                      </h3>
+                      </h3> */}
 
                       <div className="mt-2">
                         <form className="">
                           <div className="mt-2 sm:flex sm:items-center gap-4">
-                            <label
-                              htmlFor="Title"
-                              className="block text-sm font-medium leading-5 text-gray-700 dark:text-slate-300 gap-2"
-                            >
-                              Title
-                            </label>
-                            <input placeholder="Write"></input>
+                            <div className="grid grid-cols-1 gap-6">
+                              <label className="block">
+                                <span className="text-gray-700 dark:text-slate-300">
+                                  Task Name
+                                </span>
+                                <input
+                                  type="text"
+                                  className="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 bg-transparent focus:ring-0 focus:border-black dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50"
+                                  placeholder=""
+                                />
+                              </label>
+                              <label className="block">
+                                <span className="text-gray-700 dark:text-slate-300">
+                                  Additional details
+                                </span>
+                                <textarea
+                                  className="
+                    mt-0
+                    block
+                    w-full
+                    px-0.5
+                    border-0 border-b-2 border-gray-200
+                    focus:ring-0 focus:border-black dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50
+                    bg-transparent
+                  "
+                                  rows="2"
+                                ></textarea>
+                              </label>
+                              <label className="block">
+                                <span className="text-gray-700 dark:text-slate-300">
+                                  Deadline?
+                                </span>
+                                <input
+                                  type="date"
+                                  className="
+                    mt-2
+                    block
+                    w-full
+                    px-0.5
+                    border-0 border-b-2 border-gray-200
+                    focus:ring-0 focus:border-black dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50 bg-transparent dark:text-slate-300
+                  "
+                                />
+                              </label>
+                            </div>
                           </div>
                         </form>
-                        {/* <p className="text-sm text-slate-900 dark:text-slate-300">
-                          Are you sure you want to deactivate your account? All
-                          of your data will be permanently removed. This action
-                          cannot be undone.
-                        </p> */}
                       </div>
                     </div>
                   </div>
@@ -103,7 +136,7 @@ const AppHeader = () => {
                       toggleModal();
                     }}
                   >
-                    Deactivate
+                    Cancel
                   </button>
                   <button
                     type="button"
@@ -112,7 +145,7 @@ const AppHeader = () => {
                       toggleModal();
                     }}
                   >
-                    Cancel
+                    Add
                   </button>
                 </div>
               </div>

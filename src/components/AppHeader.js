@@ -17,7 +17,7 @@ const AppHeader = () => {
   return (
     <div className="flex justify-evenly m-7">
       <Button
-        className="text-white  inline-block leading-normal shadow-md transition duration-150 ease-in-out w-12 h-12 rounded-full bg-rose-500 hover:bg-orange-500 hover:shadow-lg focus:shadow-lg active:bg-violet-700 focus:outline-none focus:ring-violet-300 dark:bg-purple-700 dark:hover:bg-purple-800 dark:focus:bg-purple-900"
+        className="text-white  inline-block leading-normal shadow-md transition duration-150 ease-in-out w-12 h-12 rounded-full bg-rose-500 hover:bg-orange-500 hover:shadow-lg focus:shadow-lg active:bg-violet-700 focus:outline-none focus:ring-violet-300 dark:bg-cyan-400 dark:text-black dark:hover:bg-cyan-300 dark:shadow-2xl"
         type="submit"
         onClick={() => {
           addTask();
@@ -62,7 +62,7 @@ const AppHeader = () => {
               <div className="relative inline-block align-top bg-slate-100 dark:text-slate-300 dark:bg-slate-900 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                 <div className="bg-white dark:text-slate-300 dark:bg-slate-900 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full text-white bg-violet-700 dark:bg-sky-400 shadow-xl dark:text-black sm:mx-0 sm:h-10 sm:w-10">
+                    <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full text-white bg-rose-500 dark:bg-cyan-400 shadow-xl dark:text-black sm:mx-0 sm:h-10 sm:w-10">
                       <FontAwesomeIcon icon={solid("list-check")} />
                     </div>
 
@@ -90,7 +90,7 @@ const AppHeader = () => {
                               </label>
                               <label className="block">
                                 <span className="text-gray-700 dark:text-slate-300">
-                                  Additional details
+                                  Description
                                 </span>
                                 <textarea
                                   className="

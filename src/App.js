@@ -1,6 +1,7 @@
 import PageTitle from "./components/PageTitle";
 import AppHeader from "./components/AppHeader";
 import AppContent from "./components/AppContent";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -14,6 +15,17 @@ const App = () => {
           </div>
         </div>
       </div>
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            borderRadius: "10px",
+            background: "#171a1ebf",
+            color: "#fff",
+          },
+        }}
+      />
     </>
   );
 };

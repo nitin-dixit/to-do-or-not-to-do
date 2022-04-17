@@ -3,6 +3,10 @@ import { createPortal } from "react-dom";
 import { Button } from "./Buttons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+import { useDispatch } from "react-redux";
+import { addTodo } from "../slices/todoslice";
+import { nanoid } from "nanoid";
+import toast from "react-hot-toast";
 
 export const Modal = ({ modalOn, setModalOn }) => {
   const [taskName, setTaskName] = useState("");
@@ -11,12 +15,32 @@ export const Modal = ({ modalOn, setModalOn }) => {
     new Date().toISOString().substring(0, 10)
   );
 
+  const dispatch = useDispatch();
+
   const modalRoot = document.getElementById("modal");
   const elRef = useRef(document.createElement("div"));
 
+  const clearForm = () => {
+    setTaskName("");
+    setTaskDescription("");
+    setTaskDeadline(new Date().toISOString().substring(0, 10));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(taskName, taskDescription, taskDeadline);
+    if (taskName && taskDescription) {
+      dispatch(
+        addTodo({
+          id: nanoid(),
+          taskName,
+          taskDescription,
+          taskDeadline,
+          creationTime: new Date().toLocaleString(),
+        })
+      );
+    }
+    toast.success('Successfully Added!')
+    clearForm();
     toggleModal();
   };
 

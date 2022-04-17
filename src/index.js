@@ -3,12 +3,16 @@ import "./styles/index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { StrictMode } from "react";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 const root = createRoot(document.getElementById("root"));
 
 root.render(
   <StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StrictMode>
 );
 // If you want to start measuring performance in your app, pass a function

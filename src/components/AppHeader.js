@@ -8,7 +8,7 @@ const AppHeader = () => {
   const [modalOn, setModalOn] = useState(false);
 
   return (
-    <div className="flex justify-evenly m-7">
+    <div className="relative mb-8 w-10/12 flex justify-evenly">
       <Button
         className="text-white inline-block leading-normal shadow-md transition duration-150 ease-in-out w-12 h-12 rounded-full bg-rose-500 hover:bg-orange-500 hover:shadow-lg focus:shadow-lg active:bg-violet-700 focus:outline-none focus:ring-violet-300 dark:bg-cyan-400 dark:text-black dark:hover:bg-cyan-300 dark:shadow-2xl"
         type="submit"

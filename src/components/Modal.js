@@ -38,8 +38,11 @@ export const Modal = ({ modalOn, setModalOn }) => {
           creationTime: new Date().toLocaleString(),
         })
       );
+      toast.success("Successfully Added!");
+    } else {
+      toast.error(`Task Name can't be empty!`);
     }
-    toast.success('Successfully Added!')
+
     clearForm();
     toggleModal();
   };

@@ -79,7 +79,7 @@ export const Modal = ({ modalOn, setModalOn }) => {
         </span>
 
         <div className="relative inline-block align-top bg-gray-50 dark:text-slate-30  rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full outline-none">
-          <div className="bg-gray-50 dark:text-slate-300 dark:bg-gradient-to-r dark:from-slate-900 dark:via-gray-900 dark:to-black transition-colors duration-200 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 outline-none">
+          <div className="bg-gray-50 dark:text-slate-300 bg-gradient-to-br from-gray-700 via-gray-900 to-black transition-colors duration-200 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 outline-none">
             <div className="sm:flex sm:items-start">
               <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full text-white bg-rose-500 dark:bg-cyan-400 shadow-xl dark:text-black sm:mx-0 sm:h-10 sm:w-10">
                 <FontAwesomeIcon icon={solid("list-check")} />

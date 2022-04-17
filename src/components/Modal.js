@@ -39,12 +39,11 @@ export const Modal = ({ modalOn, setModalOn }) => {
         })
       );
       toast.success("Successfully Added!");
+      clearForm();
+      toggleModal();
     } else {
       toast.error(`Task Name can't be empty!`);
     }
-
-    clearForm();
-    toggleModal();
   };
 
   const toggleModal = () => {
@@ -79,7 +78,7 @@ export const Modal = ({ modalOn, setModalOn }) => {
           &#8203;
         </span>
 
-        <div className="relative inline-block align-top bg-gray-50 dark:text-slate-30 dark:bg-gradient-to-r dark:from-slate-900 dark:via-gray-900 dark:to-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full outline-none">
+        <div className="relative inline-block align-top bg-gray-50 dark:text-slate-30  rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full outline-none">
           <div className="bg-gray-50 dark:text-slate-300 dark:bg-gradient-to-r dark:from-slate-900 dark:via-gray-900 dark:to-black transition-colors duration-200 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 outline-none">
             <div className="sm:flex sm:items-start">
               <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full text-white bg-rose-500 dark:bg-cyan-400 shadow-xl dark:text-black sm:mx-0 sm:h-10 sm:w-10">
@@ -95,10 +94,11 @@ export const Modal = ({ modalOn, setModalOn }) => {
                           type="text"
                           id="taskName"
                           value={taskName}
+                          required
                           onChange={(e) => {
                             setTaskName(e.target.value);
                           }}
-                          className="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 bg-transparent focus:ring-0 focus:border-black dark:border-black dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50 dark:placeholder:text-slate-300"
+                          className="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 bg-transparent focus:ring-0 focus:border-black dark:border-black dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50 dark:placeholder:text-slate-300 required:border-red-500 dark:required:border-red-500"
                           placeholder="Task Name"
                         />
 
@@ -144,29 +144,28 @@ export const Modal = ({ modalOn, setModalOn }) => {
                         </label>
                       </div>
                     </div>
+                    <div className="px-4 py-4 mt-2 sm:px-6 sm:flex sm:flex-row-reverse">
+                      <Button
+                        type="button"
+                        className="w-full inline-flex justify-center border-transparent shadow-sm px-4 py-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm border-2 border-red-600 text-red-600 font-medium leading-tight rounded-full hover:bg-red-400 hover:bg-opacity-20 focus:outline-none focus:ring-0 transition duration-150 ease-in-out dark:hover:text-red-900 dark:hover:bg-red-200"
+                        onClick={() => {
+                          toggleModal();
+                        }}
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        type="submit"
+                        onClick={(e) => handleSubmit(e)}
+                        className="mt-3 w-full inline-flex justify-center rounded-full shadow-sm px-4 py-2 bg-transparent font-medium text-green-900 dark:text-green-400 dark:hover:text-green-900 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm border-2 border-green-500 leading-tight hover:bg-green-300 hover:bg-opacity-20 dark:hover:bg-green-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                      >
+                        Add
+                      </Button>
+                    </div>
                   </form>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="bg-gray-50 dark:bg-gradient-to-r dark:from-slate-900 dark:via-gray-900 dark:to-black outline-none dark:text-slate-300 transition-colors duration-200 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <Button
-              type="button"
-              className="w-full inline-flex justify-center border-transparent shadow-sm px-4 py-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm border-2 border-red-600 text-red-600 font-medium leading-tight rounded-full hover:bg-red-400 hover:bg-opacity-20 focus:outline-none focus:ring-0 transition duration-150 ease-in-out dark:hover:text-red-900 dark:hover:bg-red-200"
-              onClick={() => {
-                toggleModal();
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              onClick={(e) => handleSubmit(e)}
-              className="mt-3 w-full inline-flex justify-center rounded-full shadow-sm px-4 py-2 bg-transparent font-medium text-green-900 dark:text-green-400 dark:hover:text-green-900 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm border-2 border-green-500 leading-tight hover:bg-green-300 hover:bg-opacity-20 dark:hover:bg-green-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-            >
-              Add
-            </Button>
           </div>
         </div>
       </div>

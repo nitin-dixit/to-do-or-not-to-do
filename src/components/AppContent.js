@@ -9,11 +9,11 @@ const AppContent = () => {
 
   return (
     <>
-      {sortedTodoList && sortedTodoList.length > 0 ? (
-        <TodoItem todo={sortedTodoList}></TodoItem>
-      ) : (
-        "todo not found"
-      )}
+      {sortedTodoList && sortedTodoList.length > 0
+        ? sortedTodoList.map((todo) => (
+            <TodoItem key={todo.key} todo={todo}></TodoItem>
+          ))
+        : "todo not found"}
     </>
   );
 };

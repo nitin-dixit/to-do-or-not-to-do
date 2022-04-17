@@ -28,7 +28,7 @@ export const Modal = ({ modalOn, setModalOn }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (taskName && taskDescription) {
+    if (taskName) {
       dispatch(
         addTodo({
           id: nanoid(),
@@ -79,8 +79,8 @@ export const Modal = ({ modalOn, setModalOn }) => {
           &#8203;
         </span>
 
-        <div className="relative inline-block align-top bg-[#ecedf6] dark:text-slate-300 dark:bg-slate-900 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full">
-          <div className="bg-[#ecedf6] dark:text-slate-300 dark:bg-[#171717] px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div className="relative inline-block align-top bg-gray-50 dark:text-slate-30 dark:bg-gradient-to-r dark:from-slate-900 dark:via-gray-900 dark:to-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full outline-none">
+          <div className="bg-gray-50 dark:text-slate-300 dark:bg-gradient-to-r dark:from-slate-900 dark:via-gray-900 dark:to-black transition-colors duration-200 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 outline-none">
             <div className="sm:flex sm:items-start">
               <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full text-white bg-rose-500 dark:bg-cyan-400 shadow-xl dark:text-black sm:mx-0 sm:h-10 sm:w-10">
                 <FontAwesomeIcon icon={solid("list-check")} />
@@ -150,7 +150,7 @@ export const Modal = ({ modalOn, setModalOn }) => {
             </div>
           </div>
 
-          <div className="bg-[#ecedf6] dark:text-slate-300 dark:bg-[#171717] px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <div className="bg-gray-50 dark:bg-gradient-to-r dark:from-slate-900 dark:via-gray-900 dark:to-black outline-none dark:text-slate-300 transition-colors duration-200 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
             <Button
               type="button"
               className="w-full inline-flex justify-center border-transparent shadow-sm px-4 py-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm border-2 border-red-600 text-red-600 font-medium leading-tight rounded-full hover:bg-red-400 hover:bg-opacity-20 focus:outline-none focus:ring-0 transition duration-150 ease-in-out dark:hover:text-red-900 dark:hover:bg-red-200"

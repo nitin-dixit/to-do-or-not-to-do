@@ -1,5 +1,5 @@
 import Toggler from "./Toggler";
-import img from "../todo.png";
+import img from "../human.png";
 
 const PageTitle = () => {
   return (

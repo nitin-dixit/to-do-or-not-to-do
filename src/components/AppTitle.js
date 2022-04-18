@@ -10,13 +10,7 @@ const PageTitle = () => {
         </div>
 
         <div className="flex justify-center">
-          <img
-            src={img}
-            className=""
-            width="150px"
-            height="150px"
-            alt="Task Bot Image"
-          />
+          <img src={img} className="" width="220px" alt="Task Bot Image" />
         </div>
       </div>
     </header>

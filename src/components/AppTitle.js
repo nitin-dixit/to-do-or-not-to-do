@@ -9,8 +9,8 @@ const PageTitle = () => {
           <Toggler />
         </div>
 
-        <div className="flex justify-center">
-          <img src={img} className="" width="220px" alt="Task Bot Image" />
+        <div className="flex justify-center pb-12">
+          <img src={img} className="" width="150px" alt="Task Bot Image" />
         </div>
       </div>
     </header>

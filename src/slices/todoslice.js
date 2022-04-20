@@ -6,7 +6,7 @@ const getInitialTodo = () => {
     return JSON.parse(localTodoList);
   } else {
     //if no todo in localstorage
-    window.localStorage.setItem('todoList', []);
+    window.localStorage.setItem("todoList", []);
     return [];
   }
 };
@@ -54,22 +54,21 @@ export const todoSlice = createSlice({
         state.todoList = todoListArr; //update state
       }
     },
-  },
-
-  updateTodo: (state, action) => {
-    const todoList = window.localStorage.getItem("todoList");
-    if (todoList) {
-      const todoListArr = JSON.parse(todoList);
-      todoListArr.forEach((todo) => {
-        if (todo.id === action.payload.id) {
-          todo.taskName = action.payload.taskName;
-          todo.taskDescription = action.payload.taskDescription;
-          todo.taskDeadline = action.payload.taskDeadline;
-        }
-      });
-      window.localStorage.setItem("todoList", JSON.stringify(todoListArr));
-      state.todoList = [...todoListArr];
-    }
+    updateTodo: (state, action) => {
+      const todoList = window.localStorage.getItem("todoList");
+      if (todoList) {
+        const todoListArr = JSON.parse(todoList);
+        todoListArr.forEach((todo) => {
+          if (todo.id === action.payload.id) {
+            todo.taskName = action.payload.taskName;
+            todo.taskDescription = action.payload.taskDescription;
+            todo.taskDeadline = action.payload.taskDeadline;
+          }
+        });
+        window.localStorage.setItem("todoList", JSON.stringify(todoListArr));
+        state.todoList = [...todoListArr];
+      }
+    },
   },
 });
 

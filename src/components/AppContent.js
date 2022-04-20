@@ -4,9 +4,8 @@ import img from "../relax.png";
 
 const AppContent = () => {
   const todoList = useSelector((state) => state.todo.todoList);
-  const sortedTodoList = [...todoList].sort(
-    (a, b) => new Date(b.time) - new Date(a.time)
-  );
+  const sortedTodoList = [...todoList];
+  sortedTodoList.sort((a, b) => new Date(b.time) - new Date(a.time));
 
   return (
     <>

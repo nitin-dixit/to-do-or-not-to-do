@@ -6,10 +6,13 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../slices/todoslice";
 import { Modal } from "./Modal";
+import { motion } from "framer-motion";
 
 const TodoItem = ({ todo }) => {
   const dispatch = useDispatch();
-  // const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(
+    todo.status === "complete" ? true : false
+  );
   const [updateModalOn, setUpdateModalOn] = useState(false);
   const handleDelete = () => {
     dispatch(deleteTodo(todo.id));
@@ -24,17 +27,38 @@ const TodoItem = ({ todo }) => {
     unit: "day",
   });
   if (due === "0 days") {
-    due = "Today";
+    due = "today";
   }
   return (
     <>
       <div className="w-full space-y-5 mb-4">
-        <div className="max-w-xl mx-auto px-4 py-2 bg-white dark:bg-slate-800 dark:text-slate-300 rounded-md shadow-lg">
+        <motion.div
+          className="max-w-xl mx-auto px-4 py-2 bg-white dark:bg-slate-800 dark:text-slate-300 rounded-md shadow-lg"
+          layout
+          initial={{
+            y: 46,
+            scale: 0.3,
+            opacity: 0,
+          }}
+          animate={{
+            y: 0,
+            scale: 1,
+            opacity: 1,
+          }}
+          exit={{
+            y: 46,
+            scale: 0.3,
+            opacity: 0,
+          }}
+          transition={{
+            duration: 0.4,
+          }}
+        >
           <label className="flex items-center">
             <input
               className="rounded text-cyan-500 scale-125 focus:ring-cyan-500"
               type="checkbox"
-              //   onChange={() => { setDone(!done) }}
+              onChange={() => { setChecked(!checked) }}
             />
             <div className="ml-4 flex-1 whitespace-nowrap text-ellipsis overflow-hidden ...">
               <span className="relative px-1">
@@ -44,8 +68,10 @@ const TodoItem = ({ todo }) => {
               <span className="relative px-1 block font-light text-xs truncate ...">
                 {todo.taskDescription}
               </span>
-              <span className="relative px-1 block font-light text-xs">
-                Due: <span className="text-red-400 font-normal">{due}</span>
+              <span className="relative px-1 block text-xs">
+                <span className="text-red-500 dark:text-red-400 font-normal">
+                  {due === "today" ? `Due ${due}.` : `Due in ${due}.`}
+                </span>
               </span>
               <span className="relative px-1 block font-light text-xs">
                 created at:{" "}
@@ -68,7 +94,7 @@ const TodoItem = ({ todo }) => {
               <FontAwesomeIcon icon={solid("pencil")}></FontAwesomeIcon>
             </button>
           </label>
-        </div>
+        </motion.div>
       </div>
       <Modal
         modalOn={updateModalOn}

@@ -14,6 +14,7 @@ export const Modal = ({ type, modalOn, setModalOn, todo }) => {
   const [taskDeadline, setTaskDeadline] = useState(
     new Date().toISOString().substring(0, 10)
   );
+  const [status] = useState('incomplete');
 
   const dispatch = useDispatch();
 
@@ -52,6 +53,7 @@ export const Modal = ({ type, modalOn, setModalOn, todo }) => {
             taskName,
             taskDescription,
             taskDeadline,
+            status,
             creationTime: new Date().toLocaleString(),
           })
         );
@@ -64,7 +66,7 @@ export const Modal = ({ type, modalOn, setModalOn, todo }) => {
           todo.taskDeadline !== taskDeadline
         ) {
           dispatch(
-            updateTodo({ ...todo, taskName, taskDescription, taskDeadline })
+            updateTodo({ ...todo, taskName, taskDescription, taskDeadline, status })
           );
           toast.success("Successfully updated!");
         } else {
@@ -188,7 +190,7 @@ export const Modal = ({ type, modalOn, setModalOn, todo }) => {
                     <div className="px-2 py-2 mt-2 sm:px-6 sm:flex sm:flex-row-reverse">
                       <Button
                         type="button"
-                        className="w-full inline-flex justify-center border-transparent shadow-sm px-4 py-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm border-2 border-red-600 text-red-600 font-medium leading-tight rounded-full hover:bg-red-400 hover:bg-opacity-20 focus:outline-none focus:ring-0 transition duration-150 ease-in-out dark:hover:text-red-900 dark:hover:bg-red-200"
+                        className="w-full inline-flex justify-center border-transparent shadow-sm px-4 py-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm border-2 border-red-600 text-red-600 font-medium leading-tight rounded-full hover:bg-red-400 hover:bg-opacity-20 focus:ring-0 transition duration-150 ease-in-out dark:hover:text-red-900 dark:hover:bg-red-200"
                         onClick={() => {
                           toggleModal();
                         }}
@@ -197,7 +199,7 @@ export const Modal = ({ type, modalOn, setModalOn, todo }) => {
                       </Button>
                       <Button
                         type="submit"
-                        className="mt-3 w-full inline-flex justify-center rounded-full shadow-sm px-4 py-2 bg-transparent font-medium text-green-900 dark:text-green-400 dark:hover:text-green-900 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm border-2 border-green-500 leading-tight hover:bg-green-300 hover:bg-opacity-20 dark:hover:bg-green-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        className="mt-3 w-full inline-flex justify-center rounded-full shadow-sm px-4 py-2 bg-transparent font-medium text-green-900 dark:text-green-400 dark:hover:text-green-900 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm border-2 border-green-500 leading-tight hover:bg-green-300 hover:bg-opacity-20 dark:hover:bg-green-200 focus:ring-0 transition duration-150 ease-in-out"
                       >
                         {type === "add" ? "Add" : "Update"}
                       </Button>

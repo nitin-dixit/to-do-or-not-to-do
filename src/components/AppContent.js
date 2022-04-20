@@ -12,7 +12,7 @@ const AppContent = () => {
     <>
       {sortedTodoList && sortedTodoList.length > 0 ? (
         sortedTodoList.map((todo) => (
-          <TodoItem key={todo.key} todo={todo}></TodoItem>
+          <TodoItem key={todo.id} todo={todo}></TodoItem>
         ))
       ) : (
         <div className="flex flex-col items-center text-slate-500 text-sm font-light dark:text-slate-300">

@@ -9,7 +9,7 @@ const PageTitle = () => {
           <Toggler />
         </div>
 
-        <div className="flex justify-center pb-12">
+        <div className="flex justify-center pt-4 pb-4">
           <img src={img} className="" width="150px" alt="Task Bot Image" />
         </div>
       </div>

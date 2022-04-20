@@ -9,6 +9,7 @@ import { Modal } from "./Modal";
 
 const TodoItem = ({ todo }) => {
   const dispatch = useDispatch();
+  // const [checked, setChecked] = useState(false);
   const [updateModalOn, setUpdateModalOn] = useState(false);
   const handleDelete = () => {
     dispatch(deleteTodo(todo.id));
@@ -55,21 +56,26 @@ const TodoItem = ({ todo }) => {
             <button
               className="ml-2 focus-visible:outline-cyan-500 hover:text-red-500 mr-2"
               aria-label="Remove Task"
-              onClick={handleDelete}
+              onClick={() => handleDelete()}
             >
               <FontAwesomeIcon icon={solid("trash-can")}></FontAwesomeIcon>
             </button>
             <button
               className="ml-2 focus-visible:outline-cyan-500 hover:text-blue-500"
               aria-label="Edit Task"
-              onClick={handleEdit}
+              onClick={() => handleEdit()}
             >
               <FontAwesomeIcon icon={solid("pencil")}></FontAwesomeIcon>
             </button>
           </label>
         </div>
       </div>
-      <Modal modalOn={updateModalOn} setModalOn={setUpdateModalOn} type="update"></Modal>
+      <Modal
+        modalOn={updateModalOn}
+        setModalOn={setUpdateModalOn}
+        type="update"
+        todo={todo}
+      ></Modal>
     </>
   );
 };

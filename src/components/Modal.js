@@ -4,11 +4,11 @@ import { Button } from "./Buttons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { useDispatch } from "react-redux";
-import { addTodo } from "../slices/todoslice";
+import { addTodo, updateTodo } from "../slices/todoslice";
 import { nanoid } from "nanoid";
 import toast from "react-hot-toast";
 
-export const Modal = ({ type, modalOn, setModalOn }) => {
+export const Modal = ({ type, modalOn, setModalOn, todo }) => {
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDeadline, setTaskDeadline] = useState(
@@ -26,6 +26,22 @@ export const Modal = ({ type, modalOn, setModalOn }) => {
     setTaskDeadline(new Date().toISOString().substring(0, 10));
   };
 
+  const toggleModal = () => {
+    setModalOn(!modalOn);
+  };
+
+  useEffect(() => {
+    if (type === "update" && todo) {
+      setTaskName(todo.taskName);
+      setTaskDescription(todo.taskDescription);
+      setTaskDeadline(todo.taskDeadline);
+    } else {
+      setTaskName("");
+      setTaskDescription("");
+      setTaskDeadline(taskDeadline);
+    }
+  }, [type, todo, modalOn]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskName) {
@@ -41,23 +57,31 @@ export const Modal = ({ type, modalOn, setModalOn }) => {
         );
         toast.success("Successfully added!");
         clearForm();
-        toggleModal();
       } else if (type === "update") {
-        console.log("update");
+        if (
+          todo.taskName !== taskName ||
+          todo.taskDescription !== taskDescription ||
+          todo.taskDeadline !== taskDeadline
+        ) {
+          dispatch(
+            updateTodo({ ...todo, taskName, taskDescription, taskDeadline })
+          );
+          toast.success("Successfully updated!");
+        } else {
+          toast.error("No changes 🙅🏻");
+        }
       }
+
+      toggleModal();
     } else {
       toast.error(`Task Name can't be empty!`);
       return;
     }
   };
 
-  const toggleModal = () => {
-    setModalOn(!modalOn);
-  };
-
   const disablePastDate = () => {
     const today = new Date();
-    const dd = String(today.getDate() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
     const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     const yyyy = today.getFullYear();
     return yyyy + "-" + mm + "-" + dd;
@@ -92,7 +116,7 @@ export const Modal = ({ type, modalOn, setModalOn }) => {
         </span>
 
         <div className="relative inline-block align-top bg-gray-50 dark:text-slate-30  rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full outline-none">
-          <div className="bg-gray-50 dark:text-slate-300 dark:bg-gradient-to-b  dark:from-gray-900 dark:to-gray-800 transition-colors duration-200 px-4 pt-2 pb-2 sm:p-6 sm:pb-4 outline-none">
+          <div className="bg-gray-50 dark:text-slate-300 dark:bg-gradient-to-b  dark:from-gray-900 dark:to-gray-800 transition-colors duration-200 px-4 py-2 sm:p-6 sm:pb-4 outline-none">
             <div className="sm:flex sm:items-start">
               <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full text-white bg-rose-500 dark:bg-cyan-400 shadow-xl dark:text-black sm:mx-0 sm:h-10 sm:w-10">
                 <FontAwesomeIcon icon={solid("list-check")} />
@@ -113,7 +137,7 @@ export const Modal = ({ type, modalOn, setModalOn }) => {
                           onChange={(e) => {
                             setTaskName(e.target.value);
                           }}
-                          className="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 bg-transparent focus:ring-0 focus:border-black dark:border-black dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50 dark:placeholder:text-slate-300 required:border-red-500 dark:required:border-red-500 text-left"
+                          className="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 bg-transparent focus:ring-0 focus:border-black dark:border-slate-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50 dark:placeholder:text-slate-300 required:border-red-500 dark:required:border-red-500 text-left"
                           placeholder="Task Name"
                         />
 
@@ -130,7 +154,7 @@ export const Modal = ({ type, modalOn, setModalOn }) => {
                     w-full
                     px-0.5
                     border-0 border-b-2 border-gray-300
-                    focus:ring-0 focus:border-black dark:border-black dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50
+                    focus:ring-0 focus:border-black dark:border-gray-300 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50
                     bg-transparent dark:placeholder:text-slate-300
                   "
                           rows="2"
@@ -155,7 +179,7 @@ export const Modal = ({ type, modalOn, setModalOn }) => {
                     w-full
                     px-0.5
                     border-0 border-b-2 border-gray-300
-                    focus:ring-0 focus:border-black dark:border-black dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50 bg-transparent dark:text-slate-300
+                    focus:ring-0 focus:border-black dark:border-gray-300 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 dark:focus:ring-opacity-50 bg-transparent dark:text-slate-300
                   "
                           />
                         </label>
@@ -173,7 +197,6 @@ export const Modal = ({ type, modalOn, setModalOn }) => {
                       </Button>
                       <Button
                         type="submit"
-                        onClick={(e) => handleSubmit(e)}
                         className="mt-3 w-full inline-flex justify-center rounded-full shadow-sm px-4 py-2 bg-transparent font-medium text-green-900 dark:text-green-400 dark:hover:text-green-900 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm border-2 border-green-500 leading-tight hover:bg-green-300 hover:bg-opacity-20 dark:hover:bg-green-200 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                       >
                         {type === "add" ? "Add" : "Update"}

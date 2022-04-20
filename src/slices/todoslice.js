@@ -11,6 +11,7 @@ const getInitialTodo = () => {
   }
 };
 const initialValue = {
+  filterStatus: "all",
   todoList: getInitialTodo(),
 };
 
@@ -63,14 +64,19 @@ export const todoSlice = createSlice({
             todo.taskName = action.payload.taskName;
             todo.taskDescription = action.payload.taskDescription;
             todo.taskDeadline = action.payload.taskDeadline;
+            todo.status = action.payload.status;
           }
         });
         window.localStorage.setItem("todoList", JSON.stringify(todoListArr));
         state.todoList = [...todoListArr];
       }
     },
+
+    updateFilterStatus: (state, action) => {
+      state.filterStatus = action.payload;
+    },
   },
 });
 
-export const { addTodo, deleteTodo, updateTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, updateTodo, updateFilterStatus } = todoSlice.actions;
 export default todoSlice.reducer;

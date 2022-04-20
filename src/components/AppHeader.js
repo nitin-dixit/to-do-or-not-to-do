@@ -3,9 +3,17 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- i
 import { Button, SelectButton } from "./Buttons";
 import { Modal } from "./Modal";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFilterStatus } from "../slices/todoslice";
 
 const AppHeader = () => {
   const [modalOn, setModalOn] = useState(false);
+  const filterStatus = useSelector((state) => state.todo.filterStatus);
+  const dispatch = useDispatch();
+
+  const updateFilter = (e) => {
+    dispatch(updateFilterStatus(e.target.value));
+  };
 
   return (
     <>
@@ -20,6 +28,8 @@ const AppHeader = () => {
         </Button>
 
         <SelectButton
+          value={filterStatus}
+          onChange={updateFilter}
           className="rounded-lg list-none min-w-max mt-1 border-none text-base text-left float-left py-2 bg-white shadow-lg w-40 dark:text-slate-300 dark:bg-slate-800"
           id="status"
         >

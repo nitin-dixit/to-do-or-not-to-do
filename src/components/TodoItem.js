@@ -1,6 +1,6 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { format, formatDistanceToNowStrict } from "date-fns";
+import { format, formatDistance } from "date-fns";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -38,7 +38,7 @@ const TodoItem = ({ todo }) => {
     );
   };
 
-  let due = formatDistanceToNowStrict(new Date(todo.taskDeadline), new Date(), {
+  let due = formatDistance(new Date(todo.taskDeadline), new Date(), {
     addSuffix: true,
     locale: enIN,
   });

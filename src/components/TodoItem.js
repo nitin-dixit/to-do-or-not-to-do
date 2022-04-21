@@ -1,6 +1,6 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { format, formatDistanceStrict } from "date-fns";
+import { format, formatDistanceToNowStrict } from "date-fns";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ import { deleteTodo, updateTodo } from "../slices/todoslice";
 import { Modal } from "./Modal";
 import { motion } from "framer-motion";
 import { TaskName } from "./TaskName";
-
+import { enIN } from "date-fns/locale";
 const TodoItem = ({ todo }) => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
@@ -38,14 +38,10 @@ const TodoItem = ({ todo }) => {
     );
   };
 
-  let due = formatDistanceStrict(
-    new Date(todo.taskDeadline),
-    new Date(),
-    { addSuffix: true },
-    {
-      locale: "en-IN",
-    }
-  );
+  let due = formatDistanceToNowStrict(new Date(todo.taskDeadline), new Date(), {
+    addSuffix: true,
+    locale: enIN,
+  });
   if (due === "0 days") {
     due = "today";
   }
@@ -88,7 +84,7 @@ const TodoItem = ({ todo }) => {
                 {todo.taskDescription}
               </span>
               <span className="relative px-1 block text-xs">
-                Due:{" "}
+                Due :{" "}
                 <span className="text-red-500 dark:text-red-400 font-normal">
                   {due}
                 </span>

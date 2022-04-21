@@ -42,7 +42,7 @@ const TodoItem = ({ todo }) => {
     addSuffix: true,
     locale: enIN,
   });
-  if (due === "0 days") {
+  if (due.includes("hours ago")) {
     due = "today";
   }
   return (

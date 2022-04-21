@@ -83,7 +83,7 @@ const TodoItem = ({ todo }) => {
               <span className="relative px-1 block font-light text-xs truncate ...">
                 {todo.taskDescription}
               </span>
-              <span className="relative px-1 block text-xs">
+              <span className="relative px-1 block font-light text-xs">
                 Due :{" "}
                 <span className="text-red-500 dark:text-red-400 font-normal">
                   {due}
